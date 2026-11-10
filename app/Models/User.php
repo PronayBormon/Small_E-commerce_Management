@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Laravel\Fortify\Contracts\PasskeyUser;
@@ -37,6 +38,11 @@ class User extends Authenticatable implements PasskeyUser
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable, PasskeyAuthenticatable, TwoFactorAuthenticatable;
 
+    public function shops(): HasMany
+    {
+        return $this->hasMany(Shop::class, 'owner_id');
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -49,5 +55,21 @@ class User extends Authenticatable implements PasskeyUser
             'password' => 'hashed',
             'two_factor_confirmed_at' => 'datetime',
         ];
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isShopOwner(): bool
+    {
+        return $this->role === 'shop_owner';
+    }
+    
+
+    public function authoredCatalogProducts(): HasMany
+    {
+        return $this->hasMany(CatalogProduct::class, 'created_by_id');
     }
 }

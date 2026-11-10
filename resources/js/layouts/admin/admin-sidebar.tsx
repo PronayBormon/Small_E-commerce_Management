@@ -78,6 +78,11 @@ const menuSections: MenuSection[] = [
                 icon: UsersIcon,
             },
             {
+                title: 'Shops',
+                href: '/admin/shops',
+                icon: ShopSettingsIcon,
+            },
+            {
                 title: 'Admin',
                 href: '/admin/users/admin-users',
                 icon: AdminUsersIcon,
@@ -105,7 +110,8 @@ const menuSections: MenuSection[] = [
                 title: 'Manage Product',
                 icon: ManageProductIcon,
                 children: [
-                    { title: 'All Products', href: '/admin/products' },
+                    { title: 'Catalog Products', href: '/admin/catalog-products' },
+                    { title: 'Shop Products', href: '/admin/shop-products' },
                     { title: 'Draft Products', href: '/admin/products/drafts' },
                     { title: 'Stock Products', href: '/admin/products/stocks' },
                     { title: 'Product Review', href: '/admin/products/review' },

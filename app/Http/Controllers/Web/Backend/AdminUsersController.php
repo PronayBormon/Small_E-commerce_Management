@@ -65,4 +65,13 @@ class AdminUsersController extends Controller
             ->route('admin.users.index')
             ->with('success', 'User updated successfully.');
     }
+
+    public function destroy(User $user, UserService $userService): RedirectResponse
+    {
+        $userService->delete($user);
+
+        return redirect()
+            ->route('admin.users.index')
+            ->with('success', 'User deleted successfully.');
+    }
 }

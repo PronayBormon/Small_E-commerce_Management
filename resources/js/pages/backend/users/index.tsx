@@ -1,4 +1,5 @@
 import { Link, router } from '@inertiajs/react';
+import Swal from 'sweetalert2';
 import { useEffect, useState } from 'react';
 
 interface User {
@@ -34,6 +35,25 @@ interface Props {
 
 export default function Users({ users, filters }: Props) {
     const [search, setSearch] = useState(filters.search);
+
+    const confirmDelete = async (user: User) => {
+        const result = await Swal.fire({
+            title: 'Delete user?',
+            text: `This will permanently delete ${user.name}.`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete',
+            cancelButtonText: 'Cancel',
+            confirmButtonColor: '#d33',
+            reverseButtons: true,
+        });
+
+        if (result.isConfirmed) {
+            router.delete(`/admin/users/${user.id}`, {
+                preserveScroll: true,
+            });
+        }
+    };
 
     useEffect(() => {
         setSearch(filters.search);
@@ -137,9 +157,7 @@ export default function Users({ users, filters }: Props) {
                                 </tr>
                             </thead>
                             <tbody className="[&amp;_tr:last-child]:border-0">
-
                                 {users.data.map((user) => (
-                                    
                                     <tr
                                         key={user.id}
                                         className="data-[state=selected]:bg-muted border-b border-gray-500/20 transition-colors last:border-0 hover:bg-gray-50/50"
@@ -210,7 +228,14 @@ export default function Users({ users, filters }: Props) {
                                                     </svg>
                                                 </Link>
 
-                                                <button className="text-light-primary-text inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg border-none bg-transparent p-0 font-bold shadow-none transition-colors hover:bg-gray-100 hover:text-red-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50">
+                                                <button
+                                                    type="button"
+                                                    onClick={() =>
+                                                        void confirmDelete(user)
+                                                    }
+                                                    aria-label={`Delete ${user.name}`}
+                                                    className="text-light-primary-text inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg border-none bg-transparent p-0 font-bold shadow-none transition-colors hover:bg-gray-100 hover:text-red-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                                                >
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         width="24"

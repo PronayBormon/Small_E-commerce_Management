@@ -100,4 +100,19 @@ class UserService
 
         return $updatedUser;
     }
+
+    public function delete(User $user): void
+    {
+        $avatar = $user->avatar;
+
+        DB::transaction(fn () => $user->delete());
+
+        if ($avatar !== null && str_starts_with($avatar, '/storage/')) {
+            $path = substr($avatar, strlen('/storage/'));
+
+            if (! Storage::disk('public')->delete($path)) {
+                throw new RuntimeException("Unable to delete the user's avatar.");
+            }
+        }
+    }
 }
