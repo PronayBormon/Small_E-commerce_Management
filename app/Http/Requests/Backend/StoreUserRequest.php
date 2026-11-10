@@ -22,7 +22,7 @@ class StoreUserRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', Password::defaults()],
-            'role' => ['required', Rule::in(['admin', 'super_admin', 'user', 'manager'])],
+            'role' => ['required', Rule::in(['admin', 'super_admin', 'user', 'manager', 'shop_owner'])],
             'status' => ['required', Rule::in(['active', 'inactive'])],
             'image' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif', 'max:3200'],
         ];

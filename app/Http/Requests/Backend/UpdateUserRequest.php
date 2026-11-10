@@ -28,7 +28,7 @@ class UpdateUserRequest extends FormRequest
                 Rule::unique('users', 'email')->ignore($this->route('user')),
             ],
             'password' => ['nullable', 'string', Password::defaults()],
-            'role' => ['required', Rule::in(['admin', 'super_admin', 'user', 'manager'])],
+            'role' => ['required', Rule::in(['admin', 'super_admin', 'user', 'manager', 'shop_owner'])],
             'status' => ['required', Rule::in(['active', 'inactive'])],
             'image' => ['nullable', 'image', 'mimes:jpeg,jpg,png,gif', 'max:3200'],
             'remove_image' => ['required', 'boolean'],

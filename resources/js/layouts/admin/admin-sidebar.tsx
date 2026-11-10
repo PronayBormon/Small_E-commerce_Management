@@ -3,46 +3,13 @@ import { Link, usePage } from '@inertiajs/react';
 import type { ComponentType } from 'react';
 import { useAdmin } from './admin-context';
 import {
-    AbandonedCartIcon,
-    AdminUsersIcon,
-    CategoriesAttributesIcon,
-    ClearanceDealIcon,
-    CouponIcon,
-    CustomersIcon,
     DashboardIcon,
     DropdownArrowIcon,
-    EarningIcon,
-    FaqIcon,
-    FeaturedDealIcon,
-    FirebaseIcon,
-    FlashSalesIcon,
-    GeneralSettingsIcon,
-    HomePageControlIcon,
-    InboxIcon,
-    InventoryIcon,
-    MaintenanceSettingsIcon,
     ManageProductIcon,
-    MarketingToolsIcon,
-    OrdersIcon,
-    PaymentApiIcon,
-    PaymentMethodIcon,
-    PrivacyPolicyIcon,
-    PromoPopupIcon,
-    RefundsIcon,
-    SalesReportsIcon,
-    SellerPerformanceIcon,
-    SellersIcon,
-    SeoSettingsIcon,
     ShopSettingsIcon,
     SidebarCloseIcon,
     SidebarCollapseIcon,
-    SupportTicketIcon,
-    TaxIcon,
-    TermsConditionIcon,
-    TopProductsIcon,
-    TransactionsIcon,
     UsersIcon,
-    WithdrawsIcon,
 } from '@/components/icons/admin-sidebar-icons';
 
 export interface SubMenuItem {
@@ -82,25 +49,6 @@ const menuSections: MenuSection[] = [
                 href: '/admin/shops',
                 icon: ShopSettingsIcon,
             },
-            {
-                title: 'Admin',
-                href: '/admin/users/admin-users',
-                icon: AdminUsersIcon,
-            },
-            {
-                title: 'Sellers',
-                icon: SellersIcon,
-                children: [
-                    { title: 'All Sellers', href: '/admin/sellers' },
-                    { title: 'Seller Grid', href: '/admin/sellers/seller-grid' },
-                    { title: 'Pending Sellers', href: '/admin/sellers/pending' },
-                ],
-            },
-            {
-                title: 'Customer',
-                href: '/admin/customers',
-                icon: CustomersIcon,
-            },
         ],
     },
     {
@@ -112,215 +60,7 @@ const menuSections: MenuSection[] = [
                 children: [
                     { title: 'Catalog Products', href: '/admin/catalog-products' },
                     { title: 'Shop Products', href: '/admin/shop-products' },
-                    { title: 'Draft Products', href: '/admin/products/drafts' },
-                    { title: 'Stock Products', href: '/admin/products/stocks' },
-                    { title: 'Product Review', href: '/admin/products/review' },
                 ],
-            },
-            {
-                title: 'Categories & Attributes',
-                icon: CategoriesAttributesIcon,
-                children: [
-                    { title: 'Category List', href: '/admin/categories' },
-                    { title: 'Attribute List', href: '/admin/categories/attributes' },
-                    { title: 'Tag List', href: '/admin/categories/tags' },
-                    { title: 'Brand List', href: '/admin/categories/brands' },
-                ],
-            },
-            {
-                title: 'Manage Inventory',
-                href: '/admin/inventory',
-                icon: InventoryIcon,
-            },
-        ],
-    },
-    {
-        sectionTitle: 'ORDER MANAGEMENT',
-        items: [
-            {
-                title: 'Orders',
-                icon: OrdersIcon,
-                children: [
-                    { title: 'All Orders', href: '/admin/orders' },
-                    { title: 'Return & Refund', href: '/admin/orders/return-and-refund' },
-                    { title: 'Abandoned Cart', href: '/admin/orders/abandon-cart' },
-                    { title: 'Transactions', href: '/admin/orders/transactions' },
-                ],
-            },
-            {
-                title: 'Abandoned cart',
-                href: '/admin/abandon-cart',
-                icon: AbandonedCartIcon,
-            },
-            {
-                title: 'Transactions',
-                href: '/admin/transactions',
-                icon: TransactionsIcon,
-            },
-        ],
-    },
-    {
-        sectionTitle: 'REPORTS & ANALYTICS',
-        items: [
-            {
-                title: 'Sales reports',
-                href: '/admin/sales-reports',
-                icon: SalesReportsIcon,
-            },
-            {
-                title: 'Seller performance',
-                href: '/admin/seller-performance',
-                icon: SellerPerformanceIcon,
-            },
-            {
-                title: 'Top products, categories',
-                href: '/admin/top-products',
-                icon: TopProductsIcon,
-            },
-        ],
-    },
-    {
-        sectionTitle: 'FINANCE MANAGEMENT',
-        items: [
-            {
-                title: 'Earning',
-                href: '/admin/earning',
-                icon: EarningIcon,
-            },
-            {
-                title: 'Withdraws',
-                href: '/admin/withdraws',
-                icon: WithdrawsIcon,
-            },
-            {
-                title: 'Refunds',
-                href: '/admin/refunds',
-                icon: RefundsIcon,
-            },
-            {
-                title: 'Tax',
-                href: '/admin/tax',
-                icon: TaxIcon,
-            },
-        ],
-    },
-    {
-        sectionTitle: 'PROMOTIONAL DEALS',
-        items: [
-            {
-                title: 'Coupon',
-                href: '/admin/coupon',
-                icon: CouponIcon,
-            },
-            {
-                title: 'Flash Sales',
-                href: '/admin/flash-sales',
-                icon: FlashSalesIcon,
-            },
-            {
-                title: 'Featured Deal',
-                href: '/admin/featured-deal',
-                icon: FeaturedDealIcon,
-            },
-            {
-                title: 'Clearance Deal',
-                href: '/admin/clearance-sale',
-                icon: ClearanceDealIcon,
-            },
-        ],
-    },
-    {
-        sectionTitle: 'CONTENT MANAGEMENT',
-        items: [
-            {
-                title: 'Home Page Control',
-                href: '/admin/home-page-control',
-                icon: HomePageControlIcon,
-            },
-            {
-                title: 'Promo Popup',
-                href: '/admin/promo-popup',
-                icon: PromoPopupIcon,
-            },
-            {
-                title: 'FAQ',
-                href: '/admin/faq',
-                icon: FaqIcon,
-            },
-            {
-                title: 'Privacy Policy',
-                href: '/admin/privacy-and-policy',
-                icon: PrivacyPolicyIcon,
-            },
-            {
-                title: 'Terms & Condition',
-                href: '/admin/terms-and-conditions',
-                icon: TermsConditionIcon,
-            },
-        ],
-    },
-    {
-        sectionTitle: 'HELP & SUPPORT',
-        items: [
-            {
-                title: 'Inbox',
-                href: '/admin/inbox',
-                icon: InboxIcon,
-            },
-            {
-                title: 'Support & Ticket',
-                href: '/admin/support',
-                icon: SupportTicketIcon,
-            },
-        ],
-    },
-    {
-        sectionTitle: 'SETTINGS',
-        items: [
-            {
-                title: 'General Settings',
-                href: '/admin/settings/general',
-                icon: GeneralSettingsIcon,
-            },
-            {
-                title: 'Shop Settings',
-                href: '/admin/settings/shop',
-                icon: ShopSettingsIcon,
-            },
-            {
-                title: 'SEO Settings',
-                href: '/admin/settings/seo',
-                icon: SeoSettingsIcon,
-            },
-            {
-                title: 'Payment API',
-                href: '/admin/settings/payment-api',
-                icon: PaymentApiIcon,
-            },
-            {
-                title: 'Maintains Settings',
-                href: '/admin/settings/maintenance',
-                icon: MaintenanceSettingsIcon,
-            },
-        ],
-    },
-    {
-        sectionTitle: '3RD PARTY SETUP',
-        items: [
-            {
-                title: 'Payment method',
-                href: '/admin/payment-method',
-                icon: PaymentMethodIcon,
-            },
-            {
-                title: 'Firebase',
-                href: '/admin/firebase',
-                icon: FirebaseIcon,
-            },
-            {
-                title: 'Marketing Tools',
-                href: '/admin/marketing-tools',
-                icon: MarketingToolsIcon,
             },
         ],
     },

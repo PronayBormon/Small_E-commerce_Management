@@ -353,6 +353,7 @@ export default function Edit({ user }: Props) {
                                 <option value="super_admin">Super Admin</option>
                                 <option value="user">User</option>
                                 <option value="manager">Manager</option>
+                                <option value="shop_owner">Shop Owner</option>
                             </select>
                             <label
                                 htmlFor="role"

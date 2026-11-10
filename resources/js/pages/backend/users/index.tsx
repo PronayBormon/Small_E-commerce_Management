@@ -6,6 +6,7 @@ interface User {
     id: number;
     name: string;
     email: string;
+    role: string;
     avatar: string | null;
     created_at: string | null;
 }
@@ -31,6 +32,18 @@ interface Props {
     filters: {
         search: string;
     };
+}
+
+function formatCreatedAt(date: string | null): string {
+    if (!date) {
+        return '—';
+    }
+
+    return new Intl.DateTimeFormat(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+    }).format(new Date(date));
 }
 
 export default function Users({ users, filters }: Props) {
@@ -149,6 +162,9 @@ export default function Users({ users, filters }: Props) {
                                         Email
                                     </th>
                                     <th className="text-light-primary-text [&amp;:has([role=checkbox])]:pr-0 h-12 p-3 text-left align-middle text-sm font-semibold whitespace-nowrap first:pl-5 last:pr-5">
+                                        Role
+                                    </th>
+                                    <th className="text-light-primary-text [&amp;:has([role=checkbox])]:pr-0 h-12 p-3 text-left align-middle text-sm font-semibold whitespace-nowrap first:pl-5 last:pr-5">
                                         Date
                                     </th>
                                     <th className="text-light-primary-text [&amp;:has([role=checkbox])]:pr-0 h-12 p-3 pr-6 text-left align-middle text-sm font-semibold whitespace-nowrap first:pl-5 last:pr-5">
@@ -193,9 +209,11 @@ export default function Users({ users, filters }: Props) {
                                         <td className="[&amp;:has([role=checkbox])]:pr-0 text-light-primary-text px-3 py-3.5 align-middle text-sm whitespace-nowrap first:pl-5 last:pr-5">
                                             {user.email}
                                         </td>
-
                                         <td className="[&amp;:has([role=checkbox])]:pr-0 text-light-primary-text px-3 py-3.5 align-middle text-sm whitespace-nowrap first:pl-5 last:pr-5">
-                                            {user.created_at}
+                                            {user.role}
+                                        </td>
+                                        <td className="[&amp;:has([role=checkbox])]:pr-0 text-light-primary-text px-3 py-3.5 align-middle text-sm whitespace-nowrap first:pl-5 last:pr-5">
+                                            {formatCreatedAt(user.created_at)}
                                         </td>
                                         <td className="[&amp;:has([role=checkbox])]:pr-0 px-3 py-3.5 pr-6 align-middle whitespace-nowrap first:pl-5 last:pr-5">
                                             <div className="flex items-center gap-1">
